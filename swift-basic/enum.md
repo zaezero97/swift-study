@@ -121,6 +121,61 @@
     	print(model)
   }
   ~~~
+  
+  * 다양한 enum 사용법 (계속해서 공부하면서 추가 할 예정)
+  
+  ~~~swift
+  enum test : CaseIterable{
+    case testA:
+    case testB:
+  }
+  
+  for t in test.allCases
+  {
+    print(t) // testA,testB
+  }
+  
+  enum FastFoodMenuItem { // do Something... 
+    mutating func switchToBeingACookie() 
+    { 
+      self = .cookie 
+    }  // 앞에 mutating을 붙이면 enum안에 메소드에서 self값을 변경할 수 있다.
+  }
+  
+  //enum의 프로퍼티와 메소드
+  enum MoneyPropertiesAndMethod {
+      case manWon
+      case cheonWon
+      case baekWon
+      case sipWon
+      var koreanMoneyName: String {
+          switch self {
+              case .manWon:
+              	return "만원"
+              case .cheonWon:
+              	return "천원"
+              case .baekWon:
+              	return "백원"
+              case .sipWon:
+              	return "십원"
+          }
+      }
+      // error: enums must not contain stored properties
+      // var storeProperty = "store"  enum은 저장 프로퍼티를 가질 수 없다.
+      func speaking() {
+          print("현재 \(self.koreanMoneyName)을 갖고 있습니다.")
+      }
+  } // case 에 따른 어떤 값을 받고 싶을 때 사용하면 좋을 것 같다.
+  
+  var koreanMoney = MoneyPropertiesAndMethod.cheonWon
+  koreanMoney.speaking() 
+  
+  
+  ~~~
+  
+  
+  
+  
 
 ### movie app을 만들면서 사용했던 eunm
 
